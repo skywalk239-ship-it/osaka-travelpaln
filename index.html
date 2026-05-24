@@ -354,47 +354,297 @@ function clearTokenStorage(){ localStorage.removeItem('osaka_gh_token'); }
 // ============================================================
 const DAYS = [
   {
-    date:"6월 6일 (토)", dateJp:"6月6日（土）",
-    theme:"✈️ 출국 → 난바 입성", themeJp:"✈️ 出国 → なんば上陸",
-    events:[
-      {time:"13:50",tag:"tag-transport",hi:true, title:"청주 국제공항 집결",titleJp:"清州国際空港 集合",desc:"공항에서 엄빠랑 만나기 👨‍👩‍👦",descJp:"ご両親と合流 👨‍👩‍👦",loc:"청주 국제공항",badge:"pb-all",badgeText:"전원"},
-      {time:"14:00",tag:"tag-transport",hi:false,title:"비행기 체크인 & 수하물 붙이기",titleJp:"搭乗手続き・手荷物預け",desc:"",descJp:"",loc:""},
-      {time:"14:20",tag:"tag-food",hi:false,title:"공항 내 점심식사",titleJp:"空港内ランチ",desc:"",descJp:"",loc:""},
-      {time:"15:50",tag:"tag-reserve",hi:true, title:"✈️ RF318 — 청주 출발",titleJp:"✈️ RF318 — 清州 出発",desc:"청주 국제공항 → 간사이 국제공항 T1",descJp:"清州国際空港 → 関西国際空港 T1",loc:""},
-      {time:"17:35",tag:"tag-reserve",hi:true, title:"🛬 간사이 국제공항 도착",titleJp:"🛬 関西国際空港 到着",desc:"입국 심사 + 짐 수령 (약 40분)",descJp:"入国審査・荷物受取（約40分）",loc:""},
-      {time:"18:30",tag:"tag-transport",hi:false,title:"난카이 라피트 or 공항급행 탑승",titleJp:"南海ラピートまたは空港急行",desc:"간사이공항 → 난바 약 40~50분",descJp:"関西空港 → なんば 約40〜50分",loc:"간사이공항 전철 승강장"},
-      {time:"19:30",tag:"tag-hotel",hi:true, title:"숙소 체크인 🏨",titleJp:"チェックイン 🏨",desc:"",descJp:"",loc:"Attic0475, 난바",badge:"pb-all",badgeText:"전원"},
-      {time:"20:30",tag:"tag-sight",hi:true, title:"도톤보리 리버크루즈 🚢",titleJp:"道頓堀 リバークルーズ 🚢",desc:"",descJp:"",loc:"도톤보리",badge:"pb-hyejin",badgeText:"혜진"},
-      {time:"21:00",tag:"tag-sight",hi:false,title:"도톤보리 야경감상 🌃",titleJp:"道頓堀 夜景鑑賞 🌃",desc:"",descJp:"",loc:"에비스바시 다리",badge:"pb-hyejin",badgeText:"혜진"},
-      {time:"21:30",tag:"tag-food",hi:true, title:"라이프 저녁 장보기 🛒",titleJp:"ライフ 夕食買い物 🛒",desc:"",descJp:"",loc:"라이프 센트럴스퀘어 난바점"}
+    "date": "6월 6일 (토)",
+    "dateJp": "6月6日（土）",
+    "theme": "✈️ 출국 → 난바 입성",
+    "themeJp": "✈️ 出国 → なんば上陸",
+    "events": [
+      {
+        "time": "13:30",
+        "tag": "tag-transport",
+        "hi": true,
+        "title": "청주 국제공항 집결",
+        "titleJp": "청주 국제공항 집결",
+        "desc": "공항에서 엄빠랑 만나기 👨‍👩‍👦",
+        "descJp": "공항에서 엄빠랑 만나기 👨‍👩‍👦",
+        "loc": "청주 국제공항",
+        "badge": "pb-all",
+        "badgeText": "전원"
+      },
+      {
+        "time": "14:00",
+        "tag": "tag-transport",
+        "hi": false,
+        "title": "비행기 체크인 & 수하물 붙이기",
+        "titleJp": "搭乗手続き・手荷物預け",
+        "desc": "",
+        "descJp": "",
+        "loc": ""
+      },
+      {
+        "time": "14:20",
+        "tag": "tag-food",
+        "hi": false,
+        "title": "공항 내 점심식사",
+        "titleJp": "空港内ランチ",
+        "desc": "",
+        "descJp": "",
+        "loc": ""
+      },
+      {
+        "time": "15:50",
+        "tag": "tag-reserve",
+        "hi": true,
+        "title": "✈️ RF318 — 청주 출발",
+        "titleJp": "✈️ RF318 — 清州 出発",
+        "desc": "청주 국제공항 → 간사이 국제공항 T1",
+        "descJp": "清州国際空港 → 関西国際空港 T1",
+        "loc": ""
+      },
+      {
+        "time": "17:35",
+        "tag": "tag-reserve",
+        "hi": true,
+        "title": "🛬 간사이 국제공항 도착",
+        "titleJp": "🛬 関西国際空港 到着",
+        "desc": "입국 심사 + 짐 수령 (약 40분)",
+        "descJp": "入国審査・荷物受取（約40分）",
+        "loc": ""
+      },
+      {
+        "time": "18:30",
+        "tag": "tag-transport",
+        "hi": false,
+        "title": "난카이 라피트 or 공항급행 탑승",
+        "titleJp": "南海ラピートまたは空港急行",
+        "desc": "간사이공항 → 난바 약 40~50분",
+        "descJp": "関西空港 → なんば 約40〜50分",
+        "loc": "간사이공항 전철 승강장"
+      },
+      {
+        "time": "19:30",
+        "tag": "tag-hotel",
+        "hi": true,
+        "title": "숙소 체크인 🏨",
+        "titleJp": "チェックイン 🏨",
+        "desc": "",
+        "descJp": "",
+        "loc": "Attic0475, 난바",
+        "badge": "pb-all",
+        "badgeText": "전원"
+      },
+      {
+        "time": "20:30",
+        "tag": "tag-sight",
+        "hi": true,
+        "title": "도톤보리 리버크루즈 🚢",
+        "titleJp": "道頓堀 リバークルーズ 🚢",
+        "desc": "",
+        "descJp": "",
+        "loc": "도톤보리",
+        "badge": "pb-hyejin",
+        "badgeText": "혜진"
+      },
+      {
+        "time": "21:00",
+        "tag": "tag-sight",
+        "hi": false,
+        "title": "도톤보리 야경감상 🌃",
+        "titleJp": "道頓堀 夜景鑑賞 🌃",
+        "desc": "",
+        "descJp": "",
+        "loc": "에비스바시 다리",
+        "badge": "pb-hyejin",
+        "badgeText": "혜진"
+      },
+      {
+        "time": "21:30",
+        "tag": "tag-food",
+        "hi": true,
+        "title": "라이프 저녁 장보기 🛒",
+        "titleJp": "ライフ 夕食買い物 🛒",
+        "desc": "",
+        "descJp": "",
+        "loc": "라이프 센트럴스퀘어 난바점"
+      }
     ]
   },
   {
-    date:"6월 7일 (일)", dateJp:"6月7日（日）",
-    theme:"👘 기모노 × 우메다 × 하루카스", themeJp:"👘 着物 × 梅田 × ハルカス",
-    events:[
-      {time:"09:30",tag:"tag-transport",hi:false,title:"숙소 출발",titleJp:"宿泊先 出発",desc:"닛폰바시역 → 덴진바시스지로쿠초메",descJp:"日本橋駅 → 天神橋筋六丁目",loc:""},
-      {time:"10:00",tag:"tag-sight",hi:true, title:"기모노 체험 👘",titleJp:"着物体験 👘",desc:"",descJp:"",loc:"오사카 시립주택 박물관"},
-      {time:"11:30",tag:"tag-food",hi:true, title:"덴진바시 상점가 점심 🍜",titleJp:"天神橋筋商店街 ランチ 🍜",desc:"",descJp:"",loc:"덴진바시상점가"},
-      {time:"14:00",tag:"tag-transport",hi:false,title:"우메다로 이동",titleJp:"梅田へ移動",desc:"텐마역 → 오사카역",descJp:"天満駅 → 大阪駅",loc:""},
-      {time:"14:30",tag:"tag-shop",hi:true, title:"한큐백화점 & 우메다공중정원 🌿",titleJp:"阪急百貨店 & 梅田スカイビル 🌿",desc:"",descJp:"",loc:"우메다"},
-      {time:"17:30",tag:"tag-transport",hi:false,title:"덴노지로 이동",titleJp:"天王寺へ移動",desc:"우메다 미도스지선 → 덴노지",descJp:"梅田 御堂筋線 → 天王寺",loc:""},
-      {time:"18:00",tag:"tag-sight",hi:true, title:"하루카스 300 전망대 야경 🌆",titleJp:"ハルカス300 展望台 夜景 🌆",desc:"",descJp:"",loc:"아베노 하루카스, 덴노지"},
-      {time:"19:30",tag:"tag-food",hi:true, title:"아베노 저녁 식사 🍽️",titleJp:"あべの 夕食 🍽️",desc:"551호라이 / 이치란 / 다루마도조 등",descJp:"551蓬莱 / 一蘭 / だるまどじょう など",loc:""},
-      {time:"20:00",tag:"tag-transport",hi:false,title:"난바 복귀",titleJp:"なんばへ帰還",desc:"덴노지 미도스지선 → 난바",descJp:"天王寺 御堂筋線 → なんば",loc:""},
-      {time:"20:30",tag:"tag-shop",hi:false,title:"난바 쇼핑 🛍️",titleJp:"なんば ショッピング 🛍️",desc:"다이소 / 돈키호테 / 다이코쿠드럭스토어",descJp:"ダイソー / ドン・キホーテ / ダイコクドラッグ",loc:""}
+    "date": "6월 7일 (일)",
+    "dateJp": "6月7日（日）",
+    "theme": "👘 기모노 × 우메다 × 하루카스",
+    "themeJp": "👘 着物 × 梅田 × ハルカス",
+    "events": [
+      {
+        "time": "09:30",
+        "tag": "tag-transport",
+        "hi": false,
+        "title": "숙소 출발",
+        "titleJp": "宿泊先 出発",
+        "desc": "닛폰바시역 → 덴진바시스지로쿠초메",
+        "descJp": "日本橋駅 → 天神橋筋六丁目",
+        "loc": ""
+      },
+      {
+        "time": "10:00",
+        "tag": "tag-sight",
+        "hi": true,
+        "title": "기모노 체험 👘",
+        "titleJp": "着物体験 👘",
+        "desc": "",
+        "descJp": "",
+        "loc": "오사카 시립주택 박물관"
+      },
+      {
+        "time": "11:30",
+        "tag": "tag-food",
+        "hi": true,
+        "title": "덴진바시 상점가 점심 🍜",
+        "titleJp": "天神橋筋商店街 ランチ 🍜",
+        "desc": "",
+        "descJp": "",
+        "loc": "덴진바시상점가"
+      },
+      {
+        "time": "14:00",
+        "tag": "tag-transport",
+        "hi": false,
+        "title": "우메다로 이동",
+        "titleJp": "梅田へ移動",
+        "desc": "텐마역 → 오사카역",
+        "descJp": "天満駅 → 大阪駅",
+        "loc": ""
+      },
+      {
+        "time": "14:30",
+        "tag": "tag-shop",
+        "hi": true,
+        "title": "한큐백화점 & 우메다공중정원 🌿",
+        "titleJp": "阪急百貨店 & 梅田スカイビル 🌿",
+        "desc": "",
+        "descJp": "",
+        "loc": "우메다"
+      },
+      {
+        "time": "17:30",
+        "tag": "tag-transport",
+        "hi": false,
+        "title": "덴노지로 이동",
+        "titleJp": "天王寺へ移動",
+        "desc": "우메다 미도스지선 → 덴노지",
+        "descJp": "梅田 御堂筋線 → 天王寺",
+        "loc": ""
+      },
+      {
+        "time": "18:00",
+        "tag": "tag-sight",
+        "hi": true,
+        "title": "하루카스 300 전망대 야경 🌆",
+        "titleJp": "ハルカス300 展望台 夜景 🌆",
+        "desc": "",
+        "descJp": "",
+        "loc": "아베노 하루카스, 덴노지"
+      },
+      {
+        "time": "19:30",
+        "tag": "tag-food",
+        "hi": true,
+        "title": "아베노 저녁 식사 🍽️",
+        "titleJp": "あべの 夕食 🍽️",
+        "desc": "551호라이 / 이치란 / 다루마도조 등",
+        "descJp": "551蓬莱 / 一蘭 / だるまどじょう など",
+        "loc": ""
+      },
+      {
+        "time": "20:00",
+        "tag": "tag-transport",
+        "hi": false,
+        "title": "난바 복귀",
+        "titleJp": "なんばへ帰還",
+        "desc": "덴노지 미도스지선 → 난바",
+        "descJp": "天王寺 御堂筋線 → なんば",
+        "loc": ""
+      },
+      {
+        "time": "20:30",
+        "tag": "tag-shop",
+        "hi": false,
+        "title": "난바 쇼핑 🛍️",
+        "titleJp": "なんば ショッピング 🛍️",
+        "desc": "다이소 / 돈키호테 / 다이코쿠드럭스토어",
+        "descJp": "ダイソー / ドン・キホーテ / ダイコクドラッグ",
+        "loc": ""
+      }
     ]
   },
   {
-    date:"6월 8일 (월)", dateJp:"6月8日（月）",
-    theme:"⛩️ 야사카 신사 → 귀국", themeJp:"⛩️ 八坂神社 → 帰国",
-    events:[
-      {time:"06:00",tag:"tag-sight",hi:true, title:"난바 야사카 신사 구경 ⛩️",titleJp:"難波 八坂神社 参拝 ⛩️",desc:"",descJp:"",loc:"야사카 신사, 난바"},
-      {time:"07:00",tag:"tag-checkout",hi:true, title:"숙소 체크아웃 & 공항 이동",titleJp:"チェックアウト & 空港へ",desc:"난바역 → 난카이 라피트 탑승 (약 40분)",descJp:"なんば駅 → 南海ラピート（約40分）",loc:"",badge:"pb-all",badgeText:"전원"},
-      {time:"07:30",tag:"tag-food",hi:false,title:"아침식사 🍙",titleJp:"朝食 🍙",desc:"편의점 or 공항 내 식당",descJp:"コンビニ or 空港内レストラン",loc:""},
-      {time:"08:00",tag:"tag-reserve",hi:true, title:"간사이 국제공항 T1 도착",titleJp:"関西国際空港 T1 到着",desc:"출국 수속 & 면세점 구경",descJp:"出国手続き & 免税店",loc:"간사이공항 T1"},
-      {time:"10:40",tag:"tag-reserve",hi:true, title:"✈️ TW312 — 간사이 출발",titleJp:"✈️ TW312 — 関西 出発",desc:"간사이 국제공항 T1 → 대구 국제공항",descJp:"",loc:""},
-      {time:"12:10",tag:"tag-reserve",hi:true, title:"🛬 대구 국제공항 도착",titleJp:"🛬 大邱国際空港 到着",desc:"",descJp:"",loc:""}
+    "date": "6월 8일 (월)",
+    "dateJp": "6月8日（月）",
+    "theme": "⛩️ 야사카 신사 → 귀국",
+    "themeJp": "⛩️ 八坂神社 → 帰国",
+    "events": [
+      {
+        "time": "06:00",
+        "tag": "tag-sight",
+        "hi": true,
+        "title": "난바 야사카 신사 구경 ⛩️",
+        "titleJp": "難波 八坂神社 参拝 ⛩️",
+        "desc": "",
+        "descJp": "",
+        "loc": "야사카 신사, 난바"
+      },
+      {
+        "time": "07:00",
+        "tag": "tag-checkout",
+        "hi": true,
+        "title": "숙소 체크아웃 & 공항 이동",
+        "titleJp": "チェックアウト & 空港へ",
+        "desc": "난바역 → 난카이 라피트 탑승 (약 40분)",
+        "descJp": "なんば駅 → 南海ラピート（約40分）",
+        "loc": "",
+        "badge": "pb-all",
+        "badgeText": "전원"
+      },
+      {
+        "time": "07:30",
+        "tag": "tag-food",
+        "hi": false,
+        "title": "아침식사 🍙",
+        "titleJp": "朝食 🍙",
+        "desc": "편의점 or 공항 내 식당",
+        "descJp": "コンビニ or 空港内レストラン",
+        "loc": ""
+      },
+      {
+        "time": "08:00",
+        "tag": "tag-reserve",
+        "hi": true,
+        "title": "간사이 국제공항 T1 도착",
+        "titleJp": "関西国際空港 T1 到着",
+        "desc": "출국 수속 & 면세점 구경",
+        "descJp": "出国手続き & 免税店",
+        "loc": "간사이공항 T1"
+      },
+      {
+        "time": "10:40",
+        "tag": "tag-reserve",
+        "hi": true,
+        "title": "✈️ TW312 — 간사이 출발",
+        "titleJp": "✈️ TW312 — 関西 出発",
+        "desc": "간사이 국제공항 T1 → 대구 국제공항",
+        "descJp": "",
+        "loc": ""
+      },
+      {
+        "time": "12:10",
+        "tag": "tag-reserve",
+        "hi": true,
+        "title": "🛬 대구 국제공항 도착",
+        "titleJp": "🛬 大邱国際空港 到着",
+        "desc": "",
+        "descJp": "",
+        "loc": ""
+      }
     ]
   }
 ];
