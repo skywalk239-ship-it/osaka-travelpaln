@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>송씨네 오사카 여행 </title>
+<title>송씨네 오사카 여행</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -424,7 +424,7 @@ function showToast(msg, type='') {
 }
 
 // ============================================================
-// GitHub API — 파일 SHA 조회 → 내용 업데이트
+// GitHub API — 원본 파일을 API로 받아서 DAYS만 교체 후 PUT
 // ============================================================
 async function saveToGitHub() {
   const token = getToken();
@@ -437,49 +437,79 @@ async function saveToGitHub() {
   showToast('💾 저장 중...', '');
 
   try {
-    // 1) 현재 파일 SHA 가져오기
-    const metaRes = await fetch(
-      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}?ref=${GH_BRANCH}`,
-      { headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json' } }
-    );
-    if (!metaRes.ok) throw new Error('파일 SHA 조회 실패 (' + metaRes.status + ')');
-    const meta = await metaRes.json();
-    const sha = meta.sha;
+    const API = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}`;
+    const HEADERS = {
+      Authorization: `token ${token}`,
+      Accept: 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    };
 
-    // 2) 현재 HTML에서 DAYS 데이터 부분만 교체한 새 파일 생성
-    const currentHTML = document.documentElement.outerHTML;
-    const newData = JSON.stringify(DAYS, null, 2);
-    // DAYS 배열 교체 — 정확한 마커 사이를 교체
-    const marker1 = 'const DAYS = ';
-    const marker2 = '\n];\n\nconst TAG_LABELS';
-    const s = currentHTML.indexOf(marker1);
-    const e = currentHTML.indexOf(marker2);
-    if (s === -1 || e === -1) throw new Error('데이터 마커를 찾지 못했어');
-    const newHTML = currentHTML.slice(0, s + marker1.length)
-      + newData
-      + currentHTML.slice(e);
-
-    // 3) base64 인코딩
-    const encoded = btoa(unescape(encodeURIComponent(newHTML)));
-
-    // 4) PUT 요청
-    const putRes = await fetch(
-      `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}`,
-      {
-        method: 'PUT',
-        headers: { Authorization: `token ${token}`, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: '📅 일정 업데이트', content: encoded, sha, branch: GH_BRANCH })
-      }
-    );
-    if (!putRes.ok) {
-      const err = await putRes.json();
-      throw new Error(err.message || putRes.status);
+    // ── 1) 원본 파일을 GitHub API로 직접 가져오기 (base64 디코딩)
+    const getRes = await fetch(`${API}?ref=${GH_BRANCH}&t=${Date.now()}`, { headers: HEADERS });
+    if (!getRes.ok) {
+      const e = await getRes.json();
+      throw new Error(`파일 조회 실패 (${getRes.status}): ${e.message || ''}`);
     }
+    const fileInfo = await getRes.json();
+    const sha = fileInfo.sha;
+
+    // base64 → 원본 문자열 (UTF-8 안전 디코딩)
+    const rawBase64 = fileInfo.content.replace(/\n/g, '');
+    const originalHTML = decodeURIComponent(
+      atob(rawBase64).split('').map(c => '%' + c.charCodeAt(0).toString(16).padStart(2,'0')).join('')
+    );
+
+    // ── 2) 원본 HTML 안의 DAYS 배열만 교체
+    // 시작 마커: "const DAYS = ["  끝 마커: "];\n\nconst TAG_LABELS"
+    const START_MARKER = 'const DAYS = [';
+    const END_MARKER   = '];\n\nconst TAG_LABELS';
+
+    const startIdx = originalHTML.indexOf(START_MARKER);
+    if (startIdx === -1) throw new Error('DAYS 시작 마커를 찾지 못했어 — 파일 구조를 확인해줘');
+
+    // END_MARKER는 DAYS 배열 끝 "];" + 다음 const 앞까지
+    // startIdx 이후부터만 검색
+    const searchFrom = startIdx + START_MARKER.length;
+    const endIdx = originalHTML.indexOf(END_MARKER, searchFrom);
+    if (endIdx === -1) throw new Error('DAYS 끝 마커를 찾지 못했어 — 파일 구조를 확인해줘');
+
+    const newDaysJSON = JSON.stringify(DAYS, null, 2);
+    // "const DAYS = " + "[" + newData + "]" 형태로 재조합
+    // START_MARKER 이미 "["를 포함하므로 newDaysJSON의 바깥 [ ] 그대로 사용
+    const newHTML =
+      originalHTML.slice(0, startIdx + START_MARKER.length - 1) // "const DAYS = " 까지 ([ 제외)
+      + newDaysJSON                                               // [ ... ] 전체
+      + originalHTML.slice(endIdx + 1);                          // "]" 이후 ";\n\nconst TAG_LABELS..." 포함
+
+    // ── 3) UTF-8 → base64 인코딩
+    const newEncoded = btoa(
+      encodeURIComponent(newHTML).replace(/%([0-9A-F]{2})/g, (_, p1) => String.fromCharCode(parseInt(p1, 16)))
+    );
+
+    // ── 4) PUT으로 커밋 생성
+    const putRes = await fetch(API, {
+      method: 'PUT',
+      headers: HEADERS,
+      body: JSON.stringify({
+        message: `📅 일정 업데이트 (${new Date().toLocaleString('ko-KR')})`,
+        content: newEncoded,
+        sha: sha,
+        branch: GH_BRANCH
+      })
+    });
+
+    if (!putRes.ok) {
+      const e = await putRes.json();
+      throw new Error(`PUT 실패 (${putRes.status}): ${e.message || JSON.stringify(e)}`);
+    }
+
     showToast('✅ GitHub에 저장됐어!', 'ok');
     isSaving = false;
     return true;
-  } catch (e) {
-    showToast('❌ 저장 실패: ' + e.message, 'err');
+
+  } catch (err) {
+    console.error('[saveToGitHub]', err);
+    showToast('❌ 저장 실패: ' + err.message, 'err');
     isSaving = false;
     return false;
   }
