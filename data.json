@@ -18,11 +18,11 @@
         "badgeText": "전원"
       },
       {
-        "time": "14:00",
+        "time": "13:40",
         "tag": "tag-transport",
         "hi": false,
         "title": "비행기 체크인 & 수하물 붙이기",
-        "titleJp": "搭乗手続き・手荷物預け",
+        "titleJp": "비행기 체크인 & 수하물 붙이기",
         "desc": "",
         "descJp": "",
         "loc": ""
