@@ -9,29 +9,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --cream:#f0e8d5; --cream2:#e2d4b8; --cream3:#c8b898;
-  --warm:#a08860; --warm2:#7a6440; --warm3:#5c4a2a;
-  --accent:#c4a068;
-  --glass:rgba(240,232,210,0.09); --glass2:rgba(240,232,210,0.06);
-  --gb:rgba(200,184,152,0.22); --gb2:rgba(200,184,152,0.14);
+  --cream:#f0e8d5;--cream2:#e2d4b8;--cream3:#c8b898;
+  --warm:#a08860;--warm2:#7a6440;--warm3:#5c4a2a;--accent:#c4a068;
+  --glass:rgba(240,232,210,0.09);--glass2:rgba(240,232,210,0.06);
+  --gb:rgba(200,184,152,0.22);--gb2:rgba(200,184,152,0.14);
   --shadow:rgba(0,0,0,0.35);
-  --text:#e8dcc8; --text2:#b8a888; --text3:#8a7a5a;
+  --text:#e8dcc8;--text2:#b8a888;--text3:#8a7a5a;
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{font-family:'Noto Sans KR',sans-serif;background:linear-gradient(160deg,#2a2318 0%,#1e1a12 40%,#251f14 70%,#2e2518 100%);min-height:100vh;display:flex;justify-content:center;align-items:flex-start;padding:24px 0 60px;position:relative;overflow-x:hidden}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
 .app{width:100%;max-width:420px;padding:0 16px;position:relative;z-index:1}
-
 /* 언어토글 */
 .lang-toggle{display:flex;background:rgba(240,232,210,0.08);border:1px solid var(--gb);border-radius:20px;overflow:hidden;backdrop-filter:blur(12px)}
 .lang-toggle button{padding:5px 13px;border:none;background:transparent;color:var(--text3);font-size:11px;font-weight:700;font-family:'Do Hyeon',sans-serif;cursor:pointer;transition:all .2s;letter-spacing:.05em}
 .lang-toggle button.active{background:var(--warm);color:var(--cream)}
-
 /* 메인카드 */
-#screen-main{display:block}
-#screen-days{display:none}
+#screen-main{display:block}#screen-days{display:none}
 .main-card{background:var(--glass);backdrop-filter:blur(32px);border:1px solid var(--gb);border-radius:28px;padding:26px 20px 22px;position:relative;box-shadow:0 12px 48px var(--shadow),inset 0 1px 0 rgba(240,232,210,0.12)}
-.main-card-top{display:flex;justify-content:flex-end;margin-bottom:14px}
+.main-card-top{display:flex;justify-content:space-between;margin-bottom:14px}
 .cat-main{display:flex;justify-content:center;margin-bottom:8px}
 .card-title{text-align:center;font-family:'Do Hyeon',sans-serif;font-size:24px;color:var(--cream);letter-spacing:-.01em;line-height:1.25;margin-bottom:3px}
 .card-title .hl{color:var(--accent)}
@@ -53,33 +49,29 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .info-cell .val small{font-family:'Noto Sans KR',sans-serif;font-size:10px;color:var(--text3);font-weight:400}
 .cta-btn{width:100%;padding:13px;background:linear-gradient(135deg,var(--warm),var(--warm2));border:none;border-radius:14px;color:var(--cream);font-family:'Do Hyeon',sans-serif;font-size:17px;letter-spacing:.04em;cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,0.3);transition:transform .15s;display:flex;align-items:center;justify-content:center;gap:8px}
 .cta-btn:active{transform:scale(0.97)}
-
+.cta-sub{width:100%;padding:11px;background:rgba(160,136,96,0.15);border:1px solid var(--gb);border-radius:14px;color:var(--text2);font-family:'Do Hyeon',sans-serif;font-size:14px;letter-spacing:.04em;cursor:pointer;transition:transform .15s;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:8px}
+.cta-sub:active{transform:scale(0.97)}
 /* 일정화면 */
 .days-header{display:flex;align-items:center;gap:8px;margin-bottom:12px}
 .back-btn{background:var(--glass);border:1px solid var(--gb);border-radius:11px;padding:7px 13px;font-family:'Do Hyeon',sans-serif;font-size:13px;color:var(--text2);cursor:pointer;backdrop-filter:blur(12px)}
 .days-title{font-family:'Do Hyeon',sans-serif;font-size:17px;color:var(--cream)}
 .tab-bar{position:sticky;top:8px;z-index:20;display:flex;gap:5px;margin-bottom:12px;background:rgba(30,26,18,0.78);backdrop-filter:blur(20px);border:1px solid var(--gb);border-radius:16px;padding:4px}
 .tab-btn{flex:1;padding:8px 4px;border:none;background:transparent;border-radius:12px;font-family:'Do Hyeon',sans-serif;font-size:12.5px;color:var(--text3);cursor:pointer;transition:all .2s;display:flex;flex-direction:column;align-items:center;gap:1px}
-.tab-btn .td{font-size:11px;opacity:.65}
-.tab-btn .tn{font-size:13px}
+.tab-btn .td{font-size:11px;opacity:.65}.tab-btn .tn{font-size:13px}
 .tab-btn.active{background:var(--warm);color:var(--cream);box-shadow:0 2px 10px rgba(0,0,0,0.3)}
 .tab-btn.active .td{opacity:.8}
-.day-panel{display:none}
-.day-panel.active{display:block}
+.day-panel{display:none}.day-panel.active{display:block}
 .day-header-card{background:var(--glass);border:1px solid var(--gb);border-radius:18px;padding:14px 16px;margin-bottom:10px;backdrop-filter:blur(20px);display:flex;align-items:center;gap:12px;box-shadow:0 4px 24px var(--shadow)}
 .day-num{font-family:'Do Hyeon',sans-serif;font-size:38px;color:var(--accent);line-height:1}
 .day-info .di-date{font-family:'Do Hyeon',sans-serif;font-size:17px;color:var(--cream)}
 .day-info .di-theme{font-size:11.5px;color:var(--text3);margin-top:2px}
-
 /* 타임라인 */
 .timeline{position:relative;padding-left:50px}
 .timeline::before{content:'';position:absolute;left:19px;top:8px;bottom:8px;width:1.5px;background:linear-gradient(to bottom,rgba(160,136,96,.4),rgba(160,136,96,.04))}
-
-/* 이벤트 카드 */
-.ev{position:relative;margin-bottom:9px;background:var(--glass);border:1px solid var(--gb2);border-radius:13px;padding:9px 11px 9px 11px;backdrop-filter:blur(14px);box-shadow:0 2px 10px rgba(0,0,0,0.18)}
+.ev{position:relative;margin-bottom:9px;background:var(--glass);border:1px solid var(--gb2);border-radius:13px;padding:9px 11px;backdrop-filter:blur(14px);box-shadow:0 2px 10px rgba(0,0,0,0.18)}
 .ev::before{content:'';position:absolute;left:-34px;top:50%;transform:translateY(-50%);width:9px;height:9px;background:var(--warm3);border:2px solid #1e1a12;border-radius:50%;box-shadow:0 0 0 2.5px rgba(160,136,96,0.2)}
 .ev.hi::before{width:12px;height:12px;left:-35.5px;background:var(--accent);box-shadow:0 0 0 3px rgba(196,160,104,0.25)}
-.ev-inner{padding-right:32px} /* 수정버튼 공간 */
+.ev-inner{padding-right:32px}
 .ev-time{font-family:'Do Hyeon',sans-serif;font-size:11.5px;color:var(--accent);margin-bottom:2px;letter-spacing:.04em}
 .ev-row{display:flex;align-items:flex-start;gap:7px}
 .ev-tag{font-size:9.5px;font-weight:700;padding:2px 7px;border-radius:5px;white-space:nowrap;flex-shrink:0;margin-top:2px;letter-spacing:.04em}
@@ -95,32 +87,21 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .ev-desc{font-size:11px;color:var(--text3);margin-top:3px;line-height:1.5}
 .ev-loc{display:flex;align-items:center;gap:3px;margin-top:3px;font-size:10px;color:var(--text3)}
 .sec-label{font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--text3);text-transform:uppercase;margin:12px 0 5px;opacity:.6}
-
-/* 수정 버튼 (카드 우상단) */
 .ev-edit-btn{position:absolute;top:7px;right:8px;width:24px;height:24px;border:none;background:rgba(196,160,104,0.15);border-radius:7px;color:var(--accent);font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .2s}
 .ev:hover .ev-edit-btn,.ev:focus-within .ev-edit-btn{opacity:1}
-/* 모바일: 항상 보임 */
-@media (hover:none){.ev-edit-btn{opacity:0.55}}
-
-/* + 일정 추가 버튼 */
+@media(hover:none){.ev-edit-btn{opacity:0.55}}
 .add-ev-btn{width:100%;margin-top:10px;padding:10px;background:rgba(196,160,104,0.08);border:1.5px dashed rgba(196,160,104,0.3);border-radius:12px;color:var(--text3);font-family:'Do Hyeon',sans-serif;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .15s,border-color .15s}
 .add-ev-btn:hover{background:rgba(196,160,104,0.14);border-color:rgba(196,160,104,0.5)}
-.add-ev-btn:active{transform:scale(0.98)}
-
-/* 퍼슨 배지 */
 .pbadge{display:inline-block;font-size:9px;font-weight:700;padding:1px 6px;border-radius:5px;margin-left:4px;vertical-align:middle}
 .pb-all{background:rgba(160,136,96,0.2);color:var(--warm)}
 .pb-jeha{background:rgba(90,130,160,0.2);color:#7aaac0}
 .pb-hyejin{background:rgba(160,90,120,0.2);color:#c08098}
-
-/* 고양이 & 푸터 */
 .cat-float{text-align:right;padding-right:6px;margin-bottom:-4px;margin-top:6px;opacity:.4}
 .hotel-footer{margin-top:14px;background:rgba(140,116,72,0.1);border:1px solid rgba(140,116,72,0.22);border-radius:12px;padding:10px 13px;font-size:11px;color:var(--text3)}
 .hotel-footer strong{font-family:'Do Hyeon',sans-serif;font-size:13px;color:var(--text);display:block;margin-bottom:2px}
 .ending{text-align:center;margin-top:18px;padding:14px}
 .ending-msg{font-family:'Do Hyeon',sans-serif;font-size:15px;color:var(--text3);margin-top:8px}
-
-/* ===== 모달 ===== */
+/* 모달 */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:100;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px)}
 .modal-overlay.open{display:flex}
 .modal-box{width:100%;max-width:420px;background:#2a2318;border:1px solid var(--gb);border-radius:24px 24px 0 0;padding:24px 20px 32px;box-shadow:0 -8px 40px rgba(0,0,0,0.5)}
@@ -137,20 +118,15 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .btn-save{flex:1;padding:12px;background:linear-gradient(135deg,var(--warm),var(--warm2));border:none;border-radius:12px;color:var(--cream);font-family:'Do Hyeon',sans-serif;font-size:15px;cursor:pointer}
 .btn-delete{padding:12px 16px;background:rgba(160,80,80,0.2);border:1px solid rgba(160,80,80,0.3);border-radius:12px;color:#b87070;font-family:'Do Hyeon',sans-serif;font-size:15px;cursor:pointer}
 .btn-cancel{padding:12px 16px;background:rgba(240,232,210,0.07);border:1px solid var(--gb);border-radius:12px;color:var(--text3);font-family:'Do Hyeon',sans-serif;font-size:15px;cursor:pointer}
-
-/* 드래그 핸들 */
 .modal-handle{width:36px;height:4px;background:rgba(240,232,210,0.15);border-radius:2px;margin:0 auto 16px}
-
-/* ===== 저장 상태 토스트 ===== */
-.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:#2a2318;border:1px solid var(--gb);border-radius:14px;padding:10px 18px;font-family:'Do Hyeon',sans-serif;font-size:14px;color:var(--cream);z-index:200;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,0.4)}
+/* 토스트 */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:#2a2318;border:1px solid var(--gb);border-radius:14px;padding:10px 18px;font-family:'Do Hyeon',sans-serif;font-size:14px;color:var(--cream);z-index:200;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,0.4);max-width:90vw;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 .toast.ok{border-color:rgba(160,180,100,0.4);color:#b8d070}
 .toast.err{border-color:rgba(180,80,80,0.4);color:#d07070}
-
-/* ===== 설정 버튼 (메인카드 상단) ===== */
+/* 설정 버튼 */
 .setting-btn{background:rgba(240,232,210,0.08);border:1px solid var(--gb);border-radius:10px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text3);transition:background .15s}
 .setting-btn:hover{background:rgba(240,232,210,0.14)}
-
 /* 설정 모달 */
 .setting-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:150;display:none;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px)}
 .setting-modal-overlay.open{display:flex}
@@ -159,18 +135,40 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .setting-status.connected{background:rgba(100,160,80,0.15);border:1px solid rgba(100,160,80,0.3);color:#90c870}
 .setting-status.disconnected{background:rgba(180,80,80,0.12);border:1px solid rgba(180,80,80,0.25);color:#c07070}
 .status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.dot-ok{background:#80c050}
-.dot-no{background:#c05050}
+.dot-ok{background:#80c050}.dot-no{background:#c05050}
 .token-hint{font-size:10.5px;color:var(--text3);line-height:1.6;margin-bottom:14px;padding:10px 12px;background:rgba(240,232,210,0.05);border-radius:10px;border:1px solid var(--gb2)}
+/* 로딩 */
+.loading-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:16px}
+.loading-cat{animation:blink 1.2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
+.loading-text{font-family:'Do Hyeon',sans-serif;font-size:16px;color:var(--text3)}
 </style>
 </head>
 <body>
 <div class="app">
 
-<!-- ===== 메인 카드 ===== -->
-<div id="screen-main">
+<!-- 로딩 -->
+<div id="screen-loading" class="loading-screen">
+  <svg class="loading-cat" viewBox="0 0 220 120" width="100" height="56" xmlns="http://www.w3.org/2000/svg">
+    <path d="M178 105 Q200 90 194 68 Q190 56 180 62 Q174 68 180 80 Q186 92 178 103" fill="#c8b898"/>
+    <ellipse cx="100" cy="112" rx="85" ry="28" fill="#c8b898"/>
+    <polygon points="44,78 34,48 60,68" fill="#c8b898"/>
+    <polygon points="128,72 136,42 154,66" fill="#c8b898"/>
+    <ellipse cx="98" cy="88" rx="64" ry="38" fill="#c8b898"/>
+    <circle cx="76" cy="82" r="13" fill="rgba(30,26,18,0.9)"/>
+    <circle cx="76" cy="82" r="7" fill="#c8b898"/>
+    <circle cx="80" cy="78" r="3" fill="rgba(30,26,18,0.9)"/>
+    <circle cx="120" cy="80" r="13" fill="rgba(30,26,18,0.9)"/>
+    <circle cx="120" cy="80" r="7" fill="#c8b898"/>
+    <circle cx="124" cy="76" r="3" fill="rgba(30,26,18,0.9)"/>
+  </svg>
+  <div class="loading-text">일정 불러오는 중...</div>
+</div>
+
+<!-- 메인카드 -->
+<div id="screen-main" style="display:none">
   <div class="main-card">
-    <div class="main-card-top" style="justify-content:space-between">
+    <div class="main-card-top">
       <button class="setting-btn" onclick="openSetting()" title="GitHub 연동 설정">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
       </button>
@@ -216,22 +214,10 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       </div>
     </div>
     <div class="info-grid">
-      <div class="info-cell">
-        <div class="lbl" data-ko="일정" data-jp="日程">일정</div>
-        <div class="val">2박 3일<br><small>Day 1~3</small></div>
-      </div>
-      <div class="info-cell">
-        <div class="lbl" data-ko="베이스" data-jp="拠点">베이스</div>
-        <div class="val">難波<br><small>난바, 오사카</small></div>
-      </div>
-      <div class="info-cell">
-        <div class="lbl" data-ko="멤버" data-jp="メンバー">멤버</div>
-        <div class="val" style="font-size:12.5px">엄빠 + 제하 + 혜진</div>
-      </div>
-      <div class="info-cell">
-        <div class="lbl" data-ko="숙소" data-jp="宿泊">숙소</div>
-        <div class="val" style="font-size:13px">Attic0475<br><small>난바 센트럴</small></div>
-      </div>
+      <div class="info-cell"><div class="lbl" data-ko="일정" data-jp="日程">일정</div><div class="val">2박 3일<br><small>Day 1~3</small></div></div>
+      <div class="info-cell"><div class="lbl" data-ko="베이스" data-jp="拠点">베이스</div><div class="val">難波<br><small>난바, 오사카</small></div></div>
+      <div class="info-cell"><div class="lbl" data-ko="멤버" data-jp="メンバー">멤버</div><div class="val" style="font-size:12.5px">엄빠 + 제하 + 혜진</div></div>
+      <div class="info-cell"><div class="lbl" data-ko="숙소" data-jp="宿泊">숙소</div><div class="val" style="font-size:13px">Attic0475<br><small>난바 센트럴</small></div></div>
     </div>
     <button class="cta-btn" onclick="openDays()">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -240,7 +226,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 </div>
 
-<!-- ===== 일정 화면 ===== -->
+<!-- 일정화면 -->
 <div id="screen-days">
   <div class="days-header">
     <button class="back-btn" onclick="goBack()">← <span data-ko="메인" data-jp="メイン">메인</span></button>
@@ -258,7 +244,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div id="day-panels"></div>
 </div>
 
-<!-- ===== 모달 ===== -->
+<!-- 일정 모달 -->
 <div class="modal-overlay" id="modal" onclick="modalBgClick(event)">
   <div class="modal-box">
     <div class="modal-handle"></div>
@@ -267,12 +253,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-row">
-      <div class="modal-field">
-        <label>시간</label>
-        <input id="m-time" type="text" placeholder="예) 14:30">
-      </div>
-      <div class="modal-field">
-        <label>카테고리</label>
+      <div class="modal-field"><label>시간</label><input id="m-time" type="text" placeholder="예) 14:30"></div>
+      <div class="modal-field"><label>카테고리</label>
         <select id="m-tag">
           <option value="tag-food">🍜 식사</option>
           <option value="tag-transport">🚌 이동</option>
@@ -285,18 +267,9 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         </select>
       </div>
     </div>
-    <div class="modal-field">
-      <label>제목</label>
-      <input id="m-title" type="text" placeholder="일정 제목">
-    </div>
-    <div class="modal-field">
-      <label>설명 (선택)</label>
-      <textarea id="m-desc" placeholder="추가 설명, 메모"></textarea>
-    </div>
-    <div class="modal-field">
-      <label>장소 (선택)</label>
-      <input id="m-loc" type="text" placeholder="📍 장소명">
-    </div>
+    <div class="modal-field"><label>제목</label><input id="m-title" type="text" placeholder="일정 제목"></div>
+    <div class="modal-field"><label>설명 (선택)</label><textarea id="m-desc" placeholder="추가 설명, 메모"></textarea></div>
+    <div class="modal-field"><label>장소 (선택)</label><input id="m-loc" type="text" placeholder="📍 장소명"></div>
     <div class="modal-btns">
       <button class="btn-save" onclick="saveEvent()">저장</button>
       <button class="btn-delete" id="btn-delete" onclick="deleteEvent()" style="display:none">삭제</button>
@@ -305,7 +278,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 </div>
 
-<!-- ===== 설정 모달 ===== -->
+<!-- 설정 모달 -->
 <div class="setting-modal-overlay" id="setting-modal" onclick="settingBgClick(event)">
   <div class="setting-box">
     <div class="modal-handle"></div>
@@ -316,13 +289,11 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div id="setting-status-area"></div>
     <div class="token-hint">
       🔑 GitHub Personal Access Token을 입력하면 일정 수정사항이 자동으로 저장돼.<br>
-      토큰은 이 기기의 브라우저에만 보관되고 외부로 전송되지 않아.<br><br>
-      <strong style="color:var(--text2)">토큰 발급:</strong> github.com → Settings → Developer settings → Personal access tokens → Fine-grained tokens → <strong style="color:var(--accent)">repo Contents: Read and write</strong> 권한 필요
+      토큰은 이 기기 브라우저에만 보관돼.<br><br>
+      <strong style="color:var(--text2)">권한:</strong> Fine-grained token →
+      <strong style="color:var(--accent)">osaka-travelpaln repo → Contents: Read & write</strong>
     </div>
-    <div class="modal-field">
-      <label>GitHub Token</label>
-      <input id="s-token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
-    </div>
+    <div class="modal-field"><label>GitHub Token</label><input id="s-token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off"></div>
     <div class="modal-btns">
       <button class="btn-save" onclick="saveToken()">저장</button>
       <button class="btn-delete" onclick="clearToken()" style="display:block">토큰 삭제</button>
@@ -338,429 +309,123 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
 <script>
 // ============================================================
-// GitHub 설정 (레포 정보 — 토큰은 localStorage)
+// GitHub 설정
 // ============================================================
-const GH_OWNER = 'skywalk239-ship-it';
-const GH_REPO  = 'osaka-travelpaln';
-const GH_FILE  = 'index.html';
-const GH_BRANCH= 'main';
+const GH_OWNER  = 'skywalk239-ship-it';
+const GH_REPO   = 'osaka-travelpaln';
+const GH_DATA   = 'data.json';   // ← 이제 data.json만 수정
+const GH_BRANCH = 'main';
 
-function getToken() { return localStorage.getItem('osaka_gh_token') || ''; }
-function setToken(t){ localStorage.setItem('osaka_gh_token', t); }
+function getToken(){ return localStorage.getItem('osaka_gh_token')||''; }
+function setToken(t){ localStorage.setItem('osaka_gh_token',t); }
 function clearTokenStorage(){ localStorage.removeItem('osaka_gh_token'); }
-
-// ============================================================
-// 데이터
-// ============================================================
-const DAYS = [
-  {
-    "date": "6월 6일 (토)",
-    "dateJp": "6月6日（土）",
-    "theme": "✈️ 출국 → 난바 입성",
-    "themeJp": "✈️ 出国 → なんば上陸",
-    "events": [
-      {
-        "time": "13:30",
-        "tag": "tag-transport",
-        "hi": true,
-        "title": "청주 국제공항 집결",
-        "titleJp": "청주 국제공항 집결",
-        "desc": "공항에서 엄빠랑 만나기 👨‍👩‍👦",
-        "descJp": "공항에서 엄빠랑 만나기 👨‍👩‍👦",
-        "loc": "청주 국제공항",
-        "badge": "pb-all",
-        "badgeText": "전원"
-      },
-      {
-        "time": "14:00",
-        "tag": "tag-transport",
-        "hi": false,
-        "title": "비행기 체크인 & 수하물 붙이기",
-        "titleJp": "搭乗手続き・手荷物預け",
-        "desc": "",
-        "descJp": "",
-        "loc": ""
-      },
-      {
-        "time": "14:20",
-        "tag": "tag-food",
-        "hi": false,
-        "title": "공항 내 점심식사",
-        "titleJp": "空港内ランチ",
-        "desc": "",
-        "descJp": "",
-        "loc": ""
-      },
-      {
-        "time": "15:50",
-        "tag": "tag-reserve",
-        "hi": true,
-        "title": "✈️ RF318 — 청주 출발",
-        "titleJp": "✈️ RF318 — 清州 出発",
-        "desc": "청주 국제공항 → 간사이 국제공항 T1",
-        "descJp": "清州国際空港 → 関西国際空港 T1",
-        "loc": ""
-      },
-      {
-        "time": "17:35",
-        "tag": "tag-reserve",
-        "hi": true,
-        "title": "🛬 간사이 국제공항 도착",
-        "titleJp": "🛬 関西国際空港 到着",
-        "desc": "입국 심사 + 짐 수령 (약 40분)",
-        "descJp": "入国審査・荷物受取（約40分）",
-        "loc": ""
-      },
-      {
-        "time": "18:30",
-        "tag": "tag-transport",
-        "hi": false,
-        "title": "난카이 라피트 or 공항급행 탑승",
-        "titleJp": "南海ラピートまたは空港急行",
-        "desc": "간사이공항 → 난바 약 40~50분",
-        "descJp": "関西空港 → なんば 約40〜50分",
-        "loc": "간사이공항 전철 승강장"
-      },
-      {
-        "time": "19:30",
-        "tag": "tag-hotel",
-        "hi": true,
-        "title": "숙소 체크인 🏨",
-        "titleJp": "チェックイン 🏨",
-        "desc": "",
-        "descJp": "",
-        "loc": "Attic0475, 난바",
-        "badge": "pb-all",
-        "badgeText": "전원"
-      },
-      {
-        "time": "20:30",
-        "tag": "tag-sight",
-        "hi": true,
-        "title": "도톤보리 리버크루즈 🚢",
-        "titleJp": "道頓堀 リバークルーズ 🚢",
-        "desc": "",
-        "descJp": "",
-        "loc": "도톤보리",
-        "badge": "pb-hyejin",
-        "badgeText": "혜진"
-      },
-      {
-        "time": "21:00",
-        "tag": "tag-sight",
-        "hi": false,
-        "title": "도톤보리 야경감상 🌃",
-        "titleJp": "道頓堀 夜景鑑賞 🌃",
-        "desc": "",
-        "descJp": "",
-        "loc": "에비스바시 다리",
-        "badge": "pb-hyejin",
-        "badgeText": "혜진"
-      },
-      {
-        "time": "21:30",
-        "tag": "tag-food",
-        "hi": true,
-        "title": "라이프 저녁 장보기 🛒",
-        "titleJp": "ライフ 夕食買い物 🛒",
-        "desc": "",
-        "descJp": "",
-        "loc": "라이프 센트럴스퀘어 난바점"
-      }
-    ]
-  },
-  {
-    "date": "6월 7일 (일)",
-    "dateJp": "6月7日（日）",
-    "theme": "👘 기모노 × 우메다 × 하루카스",
-    "themeJp": "👘 着物 × 梅田 × ハルカス",
-    "events": [
-      {
-        "time": "09:30",
-        "tag": "tag-transport",
-        "hi": false,
-        "title": "숙소 출발",
-        "titleJp": "宿泊先 出発",
-        "desc": "닛폰바시역 → 덴진바시스지로쿠초메",
-        "descJp": "日本橋駅 → 天神橋筋六丁目",
-        "loc": ""
-      },
-      {
-        "time": "10:00",
-        "tag": "tag-sight",
-        "hi": true,
-        "title": "기모노 체험 👘",
-        "titleJp": "着物体験 👘",
-        "desc": "",
-        "descJp": "",
-        "loc": "오사카 시립주택 박물관"
-      },
-      {
-        "time": "11:30",
-        "tag": "tag-food",
-        "hi": true,
-        "title": "덴진바시 상점가 점심 🍜",
-        "titleJp": "天神橋筋商店街 ランチ 🍜",
-        "desc": "",
-        "descJp": "",
-        "loc": "덴진바시상점가"
-      },
-      {
-        "time": "14:00",
-        "tag": "tag-transport",
-        "hi": false,
-        "title": "우메다로 이동",
-        "titleJp": "梅田へ移動",
-        "desc": "텐마역 → 오사카역",
-        "descJp": "天満駅 → 大阪駅",
-        "loc": ""
-      },
-      {
-        "time": "14:30",
-        "tag": "tag-shop",
-        "hi": true,
-        "title": "한큐백화점 & 우메다공중정원 🌿",
-        "titleJp": "阪急百貨店 & 梅田スカイビル 🌿",
-        "desc": "",
-        "descJp": "",
-        "loc": "우메다"
-      },
-      {
-        "time": "17:30",
-        "tag": "tag-transport",
-        "hi": false,
-        "title": "덴노지로 이동",
-        "titleJp": "天王寺へ移動",
-        "desc": "우메다 미도스지선 → 덴노지",
-        "descJp": "梅田 御堂筋線 → 天王寺",
-        "loc": ""
-      },
-      {
-        "time": "18:00",
-        "tag": "tag-sight",
-        "hi": true,
-        "title": "하루카스 300 전망대 야경 🌆",
-        "titleJp": "ハルカス300 展望台 夜景 🌆",
-        "desc": "",
-        "descJp": "",
-        "loc": "아베노 하루카스, 덴노지"
-      },
-      {
-        "time": "19:30",
-        "tag": "tag-food",
-        "hi": true,
-        "title": "아베노 저녁 식사 🍽️",
-        "titleJp": "あべの 夕食 🍽️",
-        "desc": "551호라이 / 이치란 / 다루마도조 등",
-        "descJp": "551蓬莱 / 一蘭 / だるまどじょう など",
-        "loc": ""
-      },
-      {
-        "time": "20:00",
-        "tag": "tag-transport",
-        "hi": false,
-        "title": "난바 복귀",
-        "titleJp": "なんばへ帰還",
-        "desc": "덴노지 미도스지선 → 난바",
-        "descJp": "天王寺 御堂筋線 → なんば",
-        "loc": ""
-      },
-      {
-        "time": "20:30",
-        "tag": "tag-shop",
-        "hi": false,
-        "title": "난바 쇼핑 🛍️",
-        "titleJp": "なんば ショッピング 🛍️",
-        "desc": "다이소 / 돈키호테 / 다이코쿠드럭스토어",
-        "descJp": "ダイソー / ドン・キホーテ / ダイコクドラッグ",
-        "loc": ""
-      }
-    ]
-  },
-  {
-    "date": "6월 8일 (월)",
-    "dateJp": "6月8日（月）",
-    "theme": "⛩️ 야사카 신사 → 귀국",
-    "themeJp": "⛩️ 八坂神社 → 帰国",
-    "events": [
-      {
-        "time": "06:00",
-        "tag": "tag-sight",
-        "hi": true,
-        "title": "난바 야사카 신사 구경 ⛩️",
-        "titleJp": "難波 八坂神社 参拝 ⛩️",
-        "desc": "",
-        "descJp": "",
-        "loc": "야사카 신사, 난바"
-      },
-      {
-        "time": "07:00",
-        "tag": "tag-checkout",
-        "hi": true,
-        "title": "숙소 체크아웃 & 공항 이동",
-        "titleJp": "チェックアウト & 空港へ",
-        "desc": "난바역 → 난카이 라피트 탑승 (약 40분)",
-        "descJp": "なんば駅 → 南海ラピート（約40分）",
-        "loc": "",
-        "badge": "pb-all",
-        "badgeText": "전원"
-      },
-      {
-        "time": "07:30",
-        "tag": "tag-food",
-        "hi": false,
-        "title": "아침식사 🍙",
-        "titleJp": "朝食 🍙",
-        "desc": "편의점 or 공항 내 식당",
-        "descJp": "コンビニ or 空港内レストラン",
-        "loc": ""
-      },
-      {
-        "time": "08:00",
-        "tag": "tag-reserve",
-        "hi": true,
-        "title": "간사이 국제공항 T1 도착",
-        "titleJp": "関西国際空港 T1 到着",
-        "desc": "출국 수속 & 면세점 구경",
-        "descJp": "出国手続き & 免税店",
-        "loc": "간사이공항 T1"
-      },
-      {
-        "time": "10:40",
-        "tag": "tag-reserve",
-        "hi": true,
-        "title": "✈️ TW312 — 간사이 출발",
-        "titleJp": "✈️ TW312 — 関西 出発",
-        "desc": "간사이 국제공항 T1 → 대구 국제공항",
-        "descJp": "",
-        "loc": ""
-      },
-      {
-        "time": "12:10",
-        "tag": "tag-reserve",
-        "hi": true,
-        "title": "🛬 대구 국제공항 도착",
-        "titleJp": "🛬 大邱国際空港 到着",
-        "desc": "",
-        "descJp": "",
-        "loc": ""
-      }
-    ]
-  }
-];
-
-const TAG_LABELS    = {"tag-food":"식사","tag-transport":"이동","tag-sight":"관광","tag-shop":"쇼핑","tag-hotel":"숙박","tag-reserve":"예약","tag-checkout":"체크아웃","tag-drink":"음료"};
-const TAG_LABELS_JP = {"tag-food":"食事","tag-transport":"移動","tag-sight":"観光","tag-shop":"ショッピング","tag-hotel":"宿泊","tag-reserve":"予約","tag-checkout":"チェックアウト","tag-drink":"飲み物"};
 
 // ============================================================
 // 상태
 // ============================================================
+let DAYS = [];
 let currentLang = 'ko';
 let currentDay  = 0;
 let modalMode   = null;
 let editTarget  = null;
 let isSaving    = false;
 
+const TAG_LABELS    = {"tag-food":"식사","tag-transport":"이동","tag-sight":"관광","tag-shop":"쇼핑","tag-hotel":"숙박","tag-reserve":"예약","tag-checkout":"체크아웃","tag-drink":"음료"};
+const TAG_LABELS_JP = {"tag-food":"食事","tag-transport":"移動","tag-sight":"観光","tag-shop":"ショッピング","tag-hotel":"宿泊","tag-reserve":"予約","tag-checkout":"チェックアウト","tag-drink":"飲み物"};
+
 // ============================================================
 // 토스트
 // ============================================================
 let toastTimer;
-function showToast(msg, type='') {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'toast show ' + type;
+function showToast(msg,type=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='toast show '+type;
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => { t.className = 'toast'; }, 3000);
+  toastTimer=setTimeout(()=>{t.className='toast';},3500);
 }
 
 // ============================================================
-// GitHub API — 원본 파일을 API로 받아서 DAYS만 교체 후 PUT
+// data.json 로드 — 항상 캐시 우회해서 최신 데이터 가져옴
 // ============================================================
-async function saveToGitHub() {
-  const token = getToken();
-  if (!token) {
-    showToast('⚙️ 설정에서 토큰을 먼저 입력해줘', 'err');
-    return false;
+async function loadData(){
+  try{
+    // ?_t= 쿼리로 카카오/브라우저 캐시 완전 우회
+    const res = await fetch(`data.json?_t=${Date.now()}`,{
+      cache: 'no-store',
+      headers: {'Cache-Control':'no-cache','Pragma':'no-cache'}
+    });
+    if(!res.ok) throw new Error(res.status);
+    DAYS = await res.json();
+    document.getElementById('screen-loading').style.display='none';
+    document.getElementById('screen-main').style.display='block';
+    renderAll();
+  } catch(e){
+    document.querySelector('.loading-text').textContent='불러오기 실패 😿 새로고침 해줘';
+    console.error(e);
   }
-  if (isSaving) return false;
-  isSaving = true;
-  showToast('💾 저장 중...', '');
+}
 
-  try {
-    const API = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}`;
+// ============================================================
+// data.json만 GitHub에 저장
+// ============================================================
+async function saveToGitHub(){
+  const token = getToken();
+  if(!token){ showToast('⚙️ 설정에서 토큰을 먼저 입력해줘','err'); return false; }
+  if(isSaving) return false;
+  isSaving=true;
+  showToast('💾 저장 중...','');
+
+  try{
+    const API = `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_DATA}`;
     const HEADERS = {
-      Authorization: `token ${token}`,
-      Accept: 'application/vnd.github.v3+json',
-      'Content-Type': 'application/json'
+      Authorization:`token ${token}`,
+      Accept:'application/vnd.github.v3+json',
+      'Content-Type':'application/json'
     };
 
-    // ── 1) 원본 파일을 GitHub API로 직접 가져오기 (base64 디코딩)
-    const getRes = await fetch(`${API}?ref=${GH_BRANCH}&t=${Date.now()}`, { headers: HEADERS });
-    if (!getRes.ok) {
-      const e = await getRes.json();
-      throw new Error(`파일 조회 실패 (${getRes.status}): ${e.message || ''}`);
+    // 1) 현재 data.json SHA 조회
+    const getRes = await fetch(`${API}?ref=${GH_BRANCH}&t=${Date.now()}`,{headers:HEADERS});
+    if(!getRes.ok){
+      const e=await getRes.json();
+      throw new Error(`SHA 조회 실패 (${getRes.status}): ${e.message||''}`);
     }
     const fileInfo = await getRes.json();
     const sha = fileInfo.sha;
 
-    // base64 → 원본 문자열 (UTF-8 안전 디코딩)
-    const rawBase64 = fileInfo.content.replace(/\n/g, '');
-    const originalHTML = decodeURIComponent(
-      atob(rawBase64).split('').map(c => '%' + c.charCodeAt(0).toString(16).padStart(2,'0')).join('')
+    // 2) DAYS 데이터를 JSON 문자열로
+    const newContent = JSON.stringify(DAYS, null, 2);
+
+    // 3) UTF-8 → base64
+    const encoded = btoa(
+      encodeURIComponent(newContent)
+        .replace(/%([0-9A-F]{2})/g,(_,p1)=>String.fromCharCode(parseInt(p1,16)))
     );
 
-    // ── 2) 원본 HTML 안의 DAYS 배열만 교체
-    // 시작 마커: "const DAYS = ["  끝 마커: "];\n\nconst TAG_LABELS"
-    const START_MARKER = 'const DAYS = [';
-    const END_MARKER   = '];\n\nconst TAG_LABELS';
-
-    const startIdx = originalHTML.indexOf(START_MARKER);
-    if (startIdx === -1) throw new Error('DAYS 시작 마커를 찾지 못했어 — 파일 구조를 확인해줘');
-
-    // END_MARKER는 DAYS 배열 끝 "];" + 다음 const 앞까지
-    // startIdx 이후부터만 검색
-    const searchFrom = startIdx + START_MARKER.length;
-    const endIdx = originalHTML.indexOf(END_MARKER, searchFrom);
-    if (endIdx === -1) throw new Error('DAYS 끝 마커를 찾지 못했어 — 파일 구조를 확인해줘');
-
-    const newDaysJSON = JSON.stringify(DAYS, null, 2);
-    // "const DAYS = " + "[" + newData + "]" 형태로 재조합
-    // START_MARKER 이미 "["를 포함하므로 newDaysJSON의 바깥 [ ] 그대로 사용
-    const newHTML =
-      originalHTML.slice(0, startIdx + START_MARKER.length - 1) // "const DAYS = " 까지 ([ 제외)
-      + newDaysJSON                                               // [ ... ] 전체
-      + originalHTML.slice(endIdx + 1);                          // "]" 이후 ";\n\nconst TAG_LABELS..." 포함
-
-    // ── 3) UTF-8 → base64 인코딩
-    const newEncoded = btoa(
-      encodeURIComponent(newHTML).replace(/%([0-9A-F]{2})/g, (_, p1) => String.fromCharCode(parseInt(p1, 16)))
-    );
-
-    // ── 4) PUT으로 커밋 생성
-    const putRes = await fetch(API, {
-      method: 'PUT',
-      headers: HEADERS,
-      body: JSON.stringify({
-        message: `📅 일정 업데이트 (${new Date().toLocaleString('ko-KR')})`,
-        content: newEncoded,
-        sha: sha,
-        branch: GH_BRANCH
+    // 4) PUT — data.json 커밋
+    const putRes = await fetch(API,{
+      method:'PUT',
+      headers:HEADERS,
+      body:JSON.stringify({
+        message:`📅 일정 업데이트 (${new Date().toLocaleString('ko-KR')})`,
+        content:encoded,
+        sha:sha,
+        branch:GH_BRANCH
       })
     });
 
-    if (!putRes.ok) {
-      const e = await putRes.json();
-      throw new Error(`PUT 실패 (${putRes.status}): ${e.message || JSON.stringify(e)}`);
+    if(!putRes.ok){
+      const e=await putRes.json();
+      throw new Error(`저장 실패 (${putRes.status}): ${e.message||JSON.stringify(e)}`);
     }
 
-    showToast('✅ GitHub에 저장됐어!', 'ok');
-    isSaving = false;
+    showToast('✅ 저장 완료!','ok');
+    isSaving=false;
     return true;
 
-  } catch (err) {
-    console.error('[saveToGitHub]', err);
-    showToast('❌ 저장 실패: ' + err.message, 'err');
-    isSaving = false;
+  } catch(err){
+    console.error('[saveToGitHub]',err);
+    showToast('❌ '+err.message,'err');
+    isSaving=false;
     return false;
   }
 }
@@ -768,127 +433,121 @@ async function saveToGitHub() {
 // ============================================================
 // 렌더
 // ============================================================
-function renderAll() {
-  const container = document.getElementById('day-panels');
-  container.innerHTML = '';
-  DAYS.forEach((day, di) => {
-    const panel = document.createElement('div');
-    panel.className = 'day-panel' + (di === currentDay ? ' active' : '');
-    panel.id = 'panel-' + di;
-    panel.innerHTML = renderDay(day, di);
+const CAT_SVG = `<div class="cat-float"><svg viewBox="0 0 220 120" width="50" height="28" xmlns="http://www.w3.org/2000/svg"><path d="M178 105 Q200 90 194 68 Q190 56 180 62 Q174 68 180 80 Q186 92 178 103" fill="#111"/><ellipse cx="100" cy="112" rx="85" ry="28" fill="#111"/><polygon points="44,78 34,48 60,68" fill="#111"/><polygon points="128,72 136,42 154,66" fill="#111"/><ellipse cx="98" cy="88" rx="64" ry="38" fill="#111"/><circle cx="76" cy="82" r="13" fill="white"/><circle cx="76" cy="82" r="7" fill="#111"/><circle cx="80" cy="78" r="3" fill="white"/><circle cx="120" cy="80" r="13" fill="white"/><circle cx="120" cy="80" r="7" fill="#111"/><circle cx="124" cy="76" r="3" fill="white"/></svg></div>`;
+
+function renderAll(){
+  const container=document.getElementById('day-panels');
+  container.innerHTML='';
+  DAYS.forEach((day,di)=>{
+    const panel=document.createElement('div');
+    panel.className='day-panel'+(di===currentDay?' active':'');
+    panel.id='panel-'+di;
+    panel.innerHTML=renderDay(day,di);
     container.appendChild(panel);
   });
 }
 
-function renderDay(day, di) {
-  const isJp = currentLang === 'jp';
-  let html = `
-    <div class="day-header-card">
-      <div class="day-num">0${di+1}</div>
-      <div class="day-info">
-        <div class="di-date">${isJp ? day.dateJp : day.date}</div>
-        <div class="di-theme">${isJp ? day.themeJp : day.theme}</div>
-      </div>
+function renderDay(day,di){
+  const isJp=currentLang==='jp';
+  let html=`<div class="day-header-card">
+    <div class="day-num">0${di+1}</div>
+    <div class="day-info">
+      <div class="di-date">${isJp?day.dateJp:day.date}</div>
+      <div class="di-theme">${isJp?day.themeJp:day.theme}</div>
     </div>
-    <div class="timeline">`;
-  day.events.forEach((ev, ei) => { html += renderEvent(ev, di, ei); });
-  html += `</div>
-    <button class="add-ev-btn" onclick="openAddModal(${di})">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      일정 추가
-    </button>`;
-  const catSvg = `<div class="cat-float"><svg viewBox="0 0 220 120" width="50" height="28" xmlns="http://www.w3.org/2000/svg"><path d="M178 105 Q200 90 194 68 Q190 56 180 62 Q174 68 180 80 Q186 92 178 103" fill="#111"/><ellipse cx="100" cy="112" rx="85" ry="28" fill="#111"/><polygon points="44,78 34,48 60,68" fill="#111"/><polygon points="128,72 136,42 154,66" fill="#111"/><ellipse cx="98" cy="88" rx="64" ry="38" fill="#111"/><circle cx="76" cy="82" r="13" fill="white"/><circle cx="76" cy="82" r="7" fill="#111"/><circle cx="80" cy="78" r="3" fill="white"/><circle cx="120" cy="80" r="13" fill="white"/><circle cx="120" cy="80" r="7" fill="#111"/><circle cx="124" cy="76" r="3" fill="white"/></svg></div>`;
-  if (di === 2) {
-    html += catSvg + `<div class="ending"><svg viewBox="0 0 220 120" width="64" height="36" xmlns="http://www.w3.org/2000/svg" style="opacity:.35"><path d="M178 105 Q200 90 194 68 Q190 56 180 62 Q174 68 180 80 Q186 92 178 103" fill="#c8b898"/><ellipse cx="100" cy="112" rx="85" ry="28" fill="#c8b898"/><polygon points="44,78 34,48 60,68" fill="#c8b898"/><polygon points="128,72 136,42 154,66" fill="#c8b898"/><ellipse cx="98" cy="88" rx="64" ry="38" fill="#c8b898"/><circle cx="76" cy="82" r="13" fill="rgba(30,26,18,0.9)"/><circle cx="76" cy="82" r="7" fill="#c8b898"/><circle cx="80" cy="78" r="3" fill="rgba(30,26,18,0.9)"/><circle cx="120" cy="80" r="13" fill="rgba(30,26,18,0.9)"/><circle cx="120" cy="80" r="7" fill="#c8b898"/><circle cx="124" cy="76" r="3" fill="rgba(30,26,18,0.9)"/></svg><div class="ending-msg">즐거운 송씨네 오사카 여행이었냥~ 🐾</div></div>`;
+  </div><div class="timeline">`;
+  day.events.forEach((ev,ei)=>{ html+=renderEvent(ev,di,ei); });
+  html+=`</div><button class="add-ev-btn" onclick="openAddModal(${di})">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+    일정 추가
+  </button>`;
+  if(di===2){
+    html+=CAT_SVG+`<div class="ending"><svg viewBox="0 0 220 120" width="64" height="36" xmlns="http://www.w3.org/2000/svg" style="opacity:.35"><path d="M178 105 Q200 90 194 68 Q190 56 180 62 Q174 68 180 80 Q186 92 178 103" fill="#c8b898"/><ellipse cx="100" cy="112" rx="85" ry="28" fill="#c8b898"/><polygon points="44,78 34,48 60,68" fill="#c8b898"/><polygon points="128,72 136,42 154,66" fill="#c8b898"/><ellipse cx="98" cy="88" rx="64" ry="38" fill="#c8b898"/><circle cx="76" cy="82" r="13" fill="rgba(30,26,18,0.9)"/><circle cx="76" cy="82" r="7" fill="#c8b898"/><circle cx="80" cy="78" r="3" fill="rgba(30,26,18,0.9)"/><circle cx="120" cy="80" r="13" fill="rgba(30,26,18,0.9)"/><circle cx="120" cy="80" r="7" fill="#c8b898"/><circle cx="124" cy="76" r="3" fill="rgba(30,26,18,0.9)"/></svg><div class="ending-msg">즐거운 송씨네 오사카 여행이었냥~ 🐾</div></div>`;
   } else {
-    html += catSvg + `<div class="hotel-footer"><strong>🏨 Attic0475</strong>4 Chome-7-5 Namba, Chuo Ward, Osaka, 542-0076</div>`;
+    html+=CAT_SVG+`<div class="hotel-footer"><strong>🏨 Attic0475</strong>4 Chome-7-5 Namba, Chuo Ward, Osaka, 542-0076</div>`;
   }
   return html;
 }
 
-function renderEvent(ev, di, ei) {
-  const isJp = currentLang === 'jp';
-  const title    = isJp && ev.titleJp ? ev.titleJp : ev.title;
-  const desc     = isJp && ev.descJp  ? ev.descJp  : ev.desc;
-  const tagLabel = isJp ? (TAG_LABELS_JP[ev.tag]||ev.tag) : (TAG_LABELS[ev.tag]||ev.tag);
-  const hiClass  = ev.hi ? ' hi' : '';
-  const badgeHtml = ev.badge ? `<div style="margin-top:4px"><span class="pbadge ${ev.badge}">${ev.badgeText}</span></div>` : '';
-  const locHtml   = ev.loc   ? `<div class="ev-loc">📍 ${ev.loc}</div>` : '';
-  const descHtml  = desc     ? `<div class="ev-desc">${desc}</div>` : '';
-  return `
-    <div class="ev${hiClass}">
-      <button class="ev-edit-btn" onclick="openEditModal(${di},${ei})" title="수정">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-      </button>
-      <div class="ev-inner">
-        <div class="ev-time">${ev.time}</div>
-        <div class="ev-row">
-          <span class="ev-tag ${ev.tag}">${tagLabel}</span>
-          <div><div class="ev-title">${title}</div>${descHtml}</div>
-        </div>
-        ${locHtml}${badgeHtml}
+function renderEvent(ev,di,ei){
+  const isJp=currentLang==='jp';
+  const title=isJp&&ev.titleJp?ev.titleJp:ev.title;
+  const desc=isJp&&ev.descJp?ev.descJp:ev.desc;
+  const tagLabel=isJp?(TAG_LABELS_JP[ev.tag]||ev.tag):(TAG_LABELS[ev.tag]||ev.tag);
+  const hiClass=ev.hi?' hi':'';
+  const badgeHtml=ev.badge?`<div style="margin-top:4px"><span class="pbadge ${ev.badge}">${ev.badgeText}</span></div>`:'';
+  const locHtml=ev.loc?`<div class="ev-loc">📍 ${ev.loc}</div>`:'';
+  const descHtml=desc?`<div class="ev-desc">${desc}</div>`:'';
+  return `<div class="ev${hiClass}">
+    <button class="ev-edit-btn" onclick="openEditModal(${di},${ei})" title="수정">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    </button>
+    <div class="ev-inner">
+      <div class="ev-time">${ev.time}</div>
+      <div class="ev-row">
+        <span class="ev-tag ${ev.tag}">${tagLabel}</span>
+        <div><div class="ev-title">${title}</div>${descHtml}</div>
       </div>
-    </div>`;
+      ${locHtml}${badgeHtml}
+    </div>
+  </div>`;
 }
 
 // ============================================================
-// 일정 모달
+// 모달 — 일정 수정/추가
 // ============================================================
-function openEditModal(di, ei) {
-  modalMode = 'edit'; editTarget = {di, ei};
-  const ev = DAYS[di].events[ei];
-  document.getElementById('modal-title-text').textContent = '일정 수정';
-  document.getElementById('m-time').value  = ev.time;
-  document.getElementById('m-tag').value   = ev.tag;
-  document.getElementById('m-title').value = ev.title;
-  document.getElementById('m-desc').value  = ev.desc || '';
-  document.getElementById('m-loc').value   = ev.loc  || '';
-  document.getElementById('btn-delete').style.display = 'block';
+function openEditModal(di,ei){
+  modalMode='edit'; editTarget={di,ei};
+  const ev=DAYS[di].events[ei];
+  document.getElementById('modal-title-text').textContent='일정 수정';
+  document.getElementById('m-time').value=ev.time;
+  document.getElementById('m-tag').value=ev.tag;
+  document.getElementById('m-title').value=ev.title;
+  document.getElementById('m-desc').value=ev.desc||'';
+  document.getElementById('m-loc').value=ev.loc||'';
+  document.getElementById('btn-delete').style.display='block';
   document.getElementById('modal').classList.add('open');
 }
-
-function openAddModal(di) {
-  modalMode = 'add'; editTarget = {di, ei: null};
-  document.getElementById('modal-title-text').textContent = '일정 추가';
-  document.getElementById('m-time').value  = '';
-  document.getElementById('m-tag').value   = 'tag-food';
-  document.getElementById('m-title').value = '';
-  document.getElementById('m-desc').value  = '';
-  document.getElementById('m-loc').value   = '';
-  document.getElementById('btn-delete').style.display = 'none';
+function openAddModal(di){
+  modalMode='add'; editTarget={di,ei:null};
+  document.getElementById('modal-title-text').textContent='일정 추가';
+  document.getElementById('m-time').value='';
+  document.getElementById('m-tag').value='tag-food';
+  document.getElementById('m-title').value='';
+  document.getElementById('m-desc').value='';
+  document.getElementById('m-loc').value='';
+  document.getElementById('btn-delete').style.display='none';
   document.getElementById('modal').classList.add('open');
 }
+function closeModal(){ document.getElementById('modal').classList.remove('open'); }
+function modalBgClick(e){ if(e.target===document.getElementById('modal')) closeModal(); }
 
-function closeModal() { document.getElementById('modal').classList.remove('open'); }
-function modalBgClick(e) { if (e.target === document.getElementById('modal')) closeModal(); }
-
-async function saveEvent() {
-  const time  = document.getElementById('m-time').value.trim();
-  const tag   = document.getElementById('m-tag').value;
-  const title = document.getElementById('m-title').value.trim();
-  const desc  = document.getElementById('m-desc').value.trim();
-  const loc   = document.getElementById('m-loc').value.trim();
-  if (!title) { showToast('제목을 입력해줘!', 'err'); return; }
-
-  const {di, ei} = editTarget;
-  if (modalMode === 'edit') {
-    const ev = DAYS[di].events[ei];
-    ev.time = time || ev.time; ev.tag = tag;
-    ev.title = title; ev.titleJp = title;
-    ev.desc = desc; ev.descJp = desc; ev.loc = loc;
+async function saveEvent(){
+  const time=document.getElementById('m-time').value.trim();
+  const tag=document.getElementById('m-tag').value;
+  const title=document.getElementById('m-title').value.trim();
+  const desc=document.getElementById('m-desc').value.trim();
+  const loc=document.getElementById('m-loc').value.trim();
+  if(!title){ showToast('제목을 입력해줘!','err'); return; }
+  const {di,ei}=editTarget;
+  if(modalMode==='edit'){
+    const ev=DAYS[di].events[ei];
+    ev.time=time||ev.time; ev.tag=tag;
+    ev.title=title; ev.titleJp=title;
+    ev.desc=desc; ev.descJp=desc; ev.loc=loc;
   } else {
-    DAYS[di].events.push({ time: time||'00:00', tag, hi:false, title, titleJp:title, desc, descJp:desc, loc });
-    DAYS[di].events.sort((a,b) => a.time.localeCompare(b.time));
+    DAYS[di].events.push({time:time||'00:00',tag,hi:false,title,titleJp:title,desc,descJp:desc,loc});
+    DAYS[di].events.sort((a,b)=>a.time.localeCompare(b.time));
   }
   closeModal();
   renderAll();
   await saveToGitHub();
 }
 
-async function deleteEvent() {
-  if (!confirm('이 일정을 삭제할까요?')) return;
-  const {di, ei} = editTarget;
-  DAYS[di].events.splice(ei, 1);
+async function deleteEvent(){
+  if(!confirm('이 일정을 삭제할까요?')) return;
+  const {di,ei}=editTarget;
+  DAYS[di].events.splice(ei,1);
   closeModal();
   renderAll();
   await saveToGitHub();
@@ -897,73 +556,68 @@ async function deleteEvent() {
 // ============================================================
 // 설정 모달
 // ============================================================
-function openSetting() {
+function openSetting(){
   renderSettingStatus();
-  document.getElementById('s-token').value = getToken() ? '●'.repeat(20) : '';
+  document.getElementById('s-token').value=getToken()?'●'.repeat(20):'';
   document.getElementById('setting-modal').classList.add('open');
 }
-function closeSetting() { document.getElementById('setting-modal').classList.remove('open'); }
-function settingBgClick(e) { if (e.target === document.getElementById('setting-modal')) closeSetting(); }
-
-function renderSettingStatus() {
-  const area = document.getElementById('setting-status-area');
-  const hasToken = !!getToken();
-  area.innerHTML = `<div class="setting-status ${hasToken?'connected':'disconnected'}">
-    <span class="status-dot ${hasToken?'dot-ok':'dot-no'}"></span>
-    <span>${hasToken ? '✅ 토큰 연결됨 — 수정사항이 GitHub에 자동 저장돼' : '❌ 토큰 없음 — 수정해도 저장이 안 돼'}</span>
-  </div>`;
+function closeSetting(){ document.getElementById('setting-modal').classList.remove('open'); }
+function settingBgClick(e){ if(e.target===document.getElementById('setting-modal')) closeSetting(); }
+function renderSettingStatus(){
+  const has=!!getToken();
+  document.getElementById('setting-status-area').innerHTML=`
+    <div class="setting-status ${has?'connected':'disconnected'}">
+      <span class="status-dot ${has?'dot-ok':'dot-no'}"></span>
+      <span>${has?'✅ 토큰 연결됨 — 수정사항이 GitHub에 자동 저장돼':'❌ 토큰 없음 — 수정해도 저장이 안 돼'}</span>
+    </div>`;
 }
-
-function saveToken() {
-  const raw = document.getElementById('s-token').value.trim();
-  if (!raw || raw.includes('●')) { showToast('토큰을 다시 입력해줘', 'err'); return; }
-  setToken(raw);
-  renderSettingStatus();
-  showToast('✅ 토큰 저장 완료!', 'ok');
+function saveToken(){
+  const raw=document.getElementById('s-token').value.trim();
+  if(!raw||raw.includes('●')){ showToast('토큰을 다시 입력해줘','err'); return; }
+  setToken(raw); renderSettingStatus(); showToast('✅ 토큰 저장 완료!','ok');
 }
-
-function clearToken() {
-  if (!confirm('저장된 토큰을 삭제할까요?')) return;
+function clearToken(){
+  if(!confirm('저장된 토큰을 삭제할까요?')) return;
   clearTokenStorage();
-  document.getElementById('s-token').value = '';
-  renderSettingStatus();
-  showToast('토큰이 삭제됐어', '');
+  document.getElementById('s-token').value='';
+  renderSettingStatus(); showToast('토큰이 삭제됐어','');
 }
 
 // ============================================================
 // 네비게이션 & 언어
 // ============================================================
-function setLang(lang) {
-  currentLang = lang;
-  document.querySelectorAll('.lang-toggle button').forEach(btn => {
-    btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+function setLang(lang){
+  currentLang=lang;
+  document.querySelectorAll('.lang-toggle button').forEach(b=>{
+    b.classList.toggle('active',b.textContent.toLowerCase()===lang);
   });
-  document.querySelectorAll('[data-ko]').forEach(el => {
-    el.innerHTML = el.getAttribute('data-' + lang) || el.getAttribute('data-ko');
+  document.querySelectorAll('[data-ko]').forEach(el=>{
+    el.innerHTML=el.getAttribute('data-'+lang)||el.getAttribute('data-ko');
   });
-  document.documentElement.lang = lang === 'jp' ? 'ja' : 'ko';
+  document.documentElement.lang=lang==='jp'?'ja':'ko';
   renderAll();
 }
+function openDays(){
+  document.getElementById('screen-main').style.display='none';
+  document.getElementById('screen-days').style.display='block';
+  window.scrollTo(0,0);
+}
+function goBack(){
+  document.getElementById('screen-days').style.display='none';
+  document.getElementById('screen-main').style.display='block';
+  window.scrollTo(0,0);
+}
+function switchDay(idx){
+  currentDay=idx;
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===idx));
+  document.querySelectorAll('.day-panel').forEach((p,i)=>p.classList.toggle('active',i===idx));
+  window.scrollTo(0,0);
+}
 
-function openDays() {
-  document.getElementById('screen-main').style.display = 'none';
-  document.getElementById('screen-days').style.display = 'block';
-  window.scrollTo(0,0);
-}
-function goBack() {
-  document.getElementById('screen-days').style.display = 'none';
-  document.getElementById('screen-main').style.display = 'block';
-  window.scrollTo(0,0);
-}
-function switchDay(idx) {
-  currentDay = idx;
-  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.toggle('active', i === idx));
-  document.querySelectorAll('.day-panel').forEach((p,i) => p.classList.toggle('active', i === idx));
-  window.scrollTo(0,0);
-}
-
-// 초기 렌더
-renderAll();
+// ============================================================
+// 시작 — data.json 로드
+// ============================================================
+loadData();
 </script>
 </body>
 </html>
